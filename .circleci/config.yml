@@ -70,6 +70,7 @@ workflows:
             branches:
               only:
                 - master
+                - udacity_project4
           type: approval
           requires:
             - build
