@@ -1,0 +1,19 @@
+branch-defaults:
+  default:
+    environment: Demo-app-env
+environment-defaults:
+  Demo-app-env:
+    branch: null
+    repository: null
+global:
+  application_name: demo-app
+  default_ec2_keyname: mykeypair
+  default_platform: Node.js 18 running on 64bit Amazon Linux 2
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: null
+  workspace_type: Application
