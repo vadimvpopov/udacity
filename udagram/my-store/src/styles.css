@@ -1,0 +1,90 @@
+/* You can add global styles to this file, and also import other style files */
+button {
+    box-shadow: inset 0 1px 0 0 #ffffff;
+    background: #ffffff linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+    outline: 0;
+  }
+  
+
+
+  /* Remove hover effect for disabled button */ 
+  button:disabled:hover { 
+    background-color: #A9A9A9; /* Keep the gray background */ 
+  }
+
+  button:enabled:hover {
+    box-shadow: inset 0 1px 0 0 #dcecfb;
+    background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+    border: 1px solid #84bbf3;
+    color: #ffffff;
+    text-shadow: 0 1px 0 #528ecc;
+  }
+   
+  button:disabled { 
+    background-color: #A9A9A9; /* Gray background for disabled button */ 
+    cursor: not-allowed; /* Not-allowed cursor */ 
+  }
+
+  input { 
+    padding: 10px; /* Padding inside the input box */ 
+    border: 2px solid #dfeaf6; /* Blue border */ 
+    border-radius: 5px; /* Rounded corners */ 
+    outline: none; /* Remove default outline */ 
+    font-size: 16px; /* Font size */ 
+} /* Change the border color when the input is focused */ 
+
+input:focus { 
+    border-color: #007AFF; /* Darker blue on focus */ 
+    box-shadow: 0 0 5px #007AFF; /* Add a glow effect */ 
+}
+
+
+/* Style for the select element */ 
+select { 
+    /*appearance: none; /* Remove default styles */ 
+    width: 100%; padding: 10px; /* Padding */ 
+    font-size: 16px; /* Font size */ 
+    border: 2px solid #4412eb; /* Green border */ 
+    border-radius: 4px; /* Rounded corners */ 
+    background-color: #fff; /* White background */ 
+    cursor: pointer; /* Pointer cursor */ 
+    padding-right: 30px; /* Extra padding for the triangle */
+} 
+
+/* Container for the custom arrow icon */ 
+.select-container { 
+    position: relative; 
+    display: inline-block; 
+} 
+  
+  /* Custom arrow icon */ 
+.select-container::after { 
+    content: '▼'; /* Triangle icon */ 
+    position: absolute; right: 10px; /* Position triangle inside the select element */ 
+    top: 50%; transform: translateY(-50%); /* Center the triangle vertically */ 
+    pointer-events: none; /* Allow clicks to pass through */ 
+    color: #3810ed; /* Triangle color */ 
+    font-size: 16px; /* Triangle size */ 
+}
+  
+  /* Optional: Style for the drop-down options */
+option { 
+    background-color: #fff; 
+    color: black; 
+} 
+
+/* Optional: Style for the hovered option */ 
+select option:hover { 
+    background-color: #45a049; /* Darker green background */ 
+}

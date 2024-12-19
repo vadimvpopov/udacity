@@ -1,0 +1,18 @@
+<div class="confirmation-container">
+    <div class="confirmation-items" *ngIf="!this.hasError">
+        <h1 class="confirmation-header">Success!</h1>
+        <p class="confirmation-item">Thank you, <b>{{confirmationDetails.fullName}}</b></p>
+        <p class="confirmation-item">Your <b>${{confirmationDetails.totalAmount}}</b> order is confirmed!</p>
+        <p>Please allow 1-3 business day(s) for shipping</p>
+        <a [routerLink]="['/product-list']">
+            <button>Back to product list</button>
+        </a>
+    </div>
+    <div class="confirmation-items" *ngIf="this.hasError">
+        <h1 class="confirmation-header">Error!</h1>
+        <p class="confirmation-item"><b>{{this.errorMessage}}</b></p>
+        <a [routerLink]="['/product-list']">
+            <button>Back to product list</button>
+        </a>
+    </div>
+</div>

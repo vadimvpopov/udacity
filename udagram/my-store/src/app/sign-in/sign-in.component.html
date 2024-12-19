@@ -1,0 +1,29 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <label><h3>Login</h3></label>
+    <input type="text" name="fullname" [(ngModel)]="loginData.fullName" required #fullNameModel="ngModel"/>
+    <label><h3>Password</h3></label>
+    <input type="password" name="password" [(ngModel)]="loginData.password" required minlength="3" maxlength=16 #passwordModel="ngModel"/>
+    <label><h3>Create new user</h3> <input type="checkbox" [(ngModel)]="isSignUp" name="isSignIn"> <span class="checkmark"></span> </label>
+    <br>
+    <button type="submit" [disabled]="form.invalid && isSignUp">Submit</button>
+    
+    <!-- Input validation -->
+    <div *ngIf="isSignUp">
+        <div *ngIf="fullNameModel.errors && (fullNameModel.touched || fullNameModel.dirty)">
+            <h2>Full name is invalid!</h2>
+        </div>  
+        <div>
+            <div *ngIf="passwordModel.errors && (passwordModel.touched || passwordModel.dirty)">
+                <div *ngIf="passwordModel.hasError('minlength')" >
+                    <p><h2>Password must be at least 3 characters long!</h2>
+                </div>
+                <div *ngIf="passwordModel.hasError('maxlength')">
+                    <p><h2>Password must be at most 16 characters long!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="hasError">
+        <p><h2>Error signin in/up! Password or login doesn't match</h2>
+    </div>
+</form>

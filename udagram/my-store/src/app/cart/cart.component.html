@@ -1,0 +1,70 @@
+<div class="cart-container" *ngIf="cart.orderItems.length else loading">
+    <div id="items">
+        <div *ngFor="let orderItem of cart.orderItems" class="cart-item">
+            <div class="cart-item">
+                <img src="{{orderItem.product.url}}"/>
+            </div>
+
+            <div class="cart-item-details">
+                <h2>{{orderItem.product.name}}</h2>    
+                <p>{{orderItem.product.price}}</p>
+                <label>Amount: <input class="number-input" 
+                    type="number" 
+                    [(ngModel)]="orderItem.quantity"
+                    min="0" max="100"
+                    required 
+                    (ngModelChange)="onValueChange($event, orderItem)"
+                    /></label>
+            </div>
+            
+        </div>
+        <h1>Total {{cart.total}}</h1>
+    </div>
+    <div>
+        <form (ngSubmit)="onSubmit()" #form="ngForm" class="cart-panel">
+            <label><h3>Full name</h3></label>
+            <input type="text" name="fullname" [(ngModel)]="cart.fullName" required #fullNameModel="ngModel"
+            pattern="\s*(?:[A-Z][a-z]*\s?){2,4}"/>
+            <label><h3>Address</h3></label>
+            <input  type="text" name="address" [(ngModel)]="cart.address" required #addressModel="ngModel"
+            pattern="^(?=.*\S.{9,})\s*.*\s*$"/>
+            <label><h3>Credit card number</h3></label>
+            <input  type="text" name="creditcard" [(ngModel)]="cart.creditCardNumber" required #creditCardModel="ngModel" 
+                required minlength="16" maxlength="16"
+                pattern="[0-9]{16}"/>
+            <p>We'll never share your payments details with anyone else</p>
+            <button type="submit" [disabled]="form.invalid">Submit</button>
+        </form>
+        <div *ngIf="fullNameModel.errors && (fullNameModel.touched || fullNameModel.dirty)">
+            <h2>Full name is invalid!</h2>
+            <div *ngIf="fullNameModel.hasError('pattern')">
+                <p><h3>Full Name must have 2 to 4 capitalized groups of letters!</h3>
+            </div>
+        </div>
+        
+        <div *ngIf="addressModel.errors && (addressModel.touched || addressModel.dirty)">
+            <p><h2>Address is invalid!</h2>
+            <div *ngIf="addressModel.hasError('pattern')">
+                <p><h3>Address must be at least 10 characters long!</h3>
+            </div>
+        </div>
+
+        <!-- Credit Card Number validation-->
+        <div *ngIf="creditCardModel.errors && (creditCardModel.dirty || creditCardModel.touched)">
+            <div *ngIf="creditCardModel.hasError('pattern')">
+                <p><h2>Credit card number is invalid!</h2>
+            </div>
+            <div *ngIf="creditCardModel.hasError('minlength')" >
+                <p><h3>Credit card number must be at least 16 characters long!</h3>
+            </div>
+            <div *ngIf="creditCardModel.hasError('maxlength')">
+                <p><h3>Credit card number must be at most 16 characters long!</h3>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+<ng-template #loading>
+    <div class="empty-cart-message"><h1>Your shopping Cart is empty!</h1></div>
+</ng-template>

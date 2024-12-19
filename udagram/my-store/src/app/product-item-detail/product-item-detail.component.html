@@ -1,0 +1,26 @@
+<div class="detail-container">
+    <img
+      [src]="product.url"
+      alt="Exterior photo of {{ product.name }}"
+      crossorigin
+    />
+    <div class="product-container detail-item">
+        <h2 class="product-heading">{{ product.name }}</h2>
+        <h3>{{ product.price }}</h3>
+        <h3>{{ product.description }}</h3>
+        <select class="select-input" [(ngModel)]="quantity">
+            <option [ngValue]="1">1</option>
+            <option [ngValue]="2">2</option>
+            <option [ngValue]="3">3</option>
+            <option [ngValue]="4">4</option>
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="6">6</option>
+            <option [ngValue]="7">7</option>
+            <option [ngValue]="8">8</option>
+            <option [ngValue]="9">9</option>
+            <option [ngValue]="10">10</option>
+        </select>
+        <button (click)="onAddToCart()">Add to cart</button>
+        <a [routerLink]="['/product-list']" class="back-link">Back to product list</a>
+    </div>
+</div>

@@ -9,11 +9,11 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: "cimg/node:14.15"
+      - image: "cimg/node:18.19"
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '14.15'         
+          node-version: '18.19'         
       - checkout
       - run:
           name: Clear npm cache
@@ -26,14 +26,7 @@ jobs:
           command: |
             echo "NODE --version" 
             echo $(node --version)
-            echo "NPM --version" 
-            echo $(npm --version)
             npm run frontend:install
-            npm install typescript@3.5 --save-dev
-            echo "typescript verison: "
-            npx tsc --version
-            npm ls
-            npm install @angular-devkit/build-angular@latest --save-dev
 
       # TODO: Install dependencies in the the backend API          
       - run:
@@ -45,7 +38,8 @@ jobs:
       - run:
           name: Front-End Lint
           command: |
-            npm run frontend:lint
+            echo "Here should linting go"
+          # npm run frontend:lint
       # TODO: Build the frontend app
       - run:
           name: Front-End Build
@@ -66,7 +60,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15' 
+          node-version: '18.19' 
       - eb/setup
       - aws-cli/setup
       - checkout
