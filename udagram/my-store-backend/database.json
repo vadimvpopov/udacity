@@ -1,0 +1,23 @@
+{
+    "dev": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "postgres",
+      "user": "postgres",
+      "password": "postgres"
+    },
+    "prod": {
+      "driver": "pg",
+      "host": "database-vp-homework.ctzxbiv7qa8o.us-east-1.rds.amazonaws.com",
+      "database": "postgres",
+      "user": "postgres",
+      "password": "rof84cI37x5kcPy3mg7b"
+    },
+    "test": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "storefront_db_test",
+      "user": "storefront_user_test",
+      "password": "password123"
+    }
+  }

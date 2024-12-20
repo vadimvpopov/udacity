@@ -65,16 +65,6 @@ jobs:
       - aws-cli/setup
       - checkout
       - run:
-          name: Initialize EB CLI
-          command: |
-            cd udagram/my-store-backend
-            eb list && eb use demo-app-dev
-            eb setenv POSTGRES_PASSWORD=${POSTGRES_PASSWORD} POSTGRES_USERNAME=${POSTGRES_USERNAME}
-            eb setenv POSTGRES_DB=${POSTGRES_DB} POSTGRES_HOST=${POSTGRES_HOST}
-            eb setenv PEPPER=${PEPPER} TOKEN_SECRET=${TOKEN_SECRET}
-            eb printenv
-
-      - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |

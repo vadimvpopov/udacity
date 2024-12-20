@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { environment } from '../environments/environment';
+const API_HOST = environment.apiHost;
 
 interface JwtPayload {
   user: User;
@@ -24,7 +25,7 @@ export class AuthService {
   }
 
   signIn(userData: User): Observable<void> {
-    return this.http.post('http://localhost:3001/api/users/authenticate', userData).pipe(
+    return this.http.post(`http://${API_HOST}/api/users/authenticate`, userData).pipe(
       map(token => this.handleToken(token as string))
     );
   }
@@ -32,7 +33,7 @@ export class AuthService {
   signUp(userData: User): Observable<void> {
     console.log("signing up!");
     console.log(userData);
-    return this.http.post('http://localhost:3001/api/users', userData).pipe(
+    return this.http.post(`http://${API_HOST}/api/users`, userData).pipe(
       map(token => this.handleToken(token as string))
     );
   }

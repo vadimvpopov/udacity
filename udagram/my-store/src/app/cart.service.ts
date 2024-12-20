@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { concatMap, concatWith } from 'rxjs/operators'
 import { from, Observable } from 'rxjs';
+import { environment } from '../environments/environment';
+
+const API_HOST = environment.apiHost;
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +25,7 @@ export class CartService {
   confirmOrder(): Observable<any> {
     const userId:number = this.authService.userId;
     const headers = { 'Authorization': `Bearer ${this.authService.token}` };
-    const orderItemUrl = "http://localhost:3001/api/orders/order/items";
+    const orderItemUrl = `http://${API_HOST}/api/orders/order/items`;
     const orderItems$ = from(this.cart.orderItems).pipe( 
       concatMap(orderItem => {
         const payload = {userId: userId, productId: orderItem.product.id, quantity: orderItem.quantity};
@@ -30,7 +33,7 @@ export class CartService {
       })
     );
     
-    const finalRequest$ = this.http.put("http://localhost:3001/api/orders/order/close", {userId}, {headers}); 
+    const finalRequest$ = this.http.put(`http://${API_HOST}/api/orders/order/close`, {userId}, {headers}); 
 
     this.confirmationDetails.fullName = this.cart.fullName;
     this.confirmationDetails.totalAmount = this.cart.total;
